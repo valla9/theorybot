@@ -16,6 +16,15 @@ steps = [1, 1, 0, 1, 1, 1, 0]
 SYSTEM_FLAT = "\033[92mFlat"
 SYSTEM_SHARP = "\033[96mSharp"
 
+def get_scale_audio():
+    """returns a scale name and the matching audio file"""
+    # generate random scale
+    scale_index = int(random.random() * 7)
+
+    scale_name = scales[scale_index]
+    scale_audio = open('res/audio/scales/' + scale_name + '.wav', 'rb')
+    return [scale_audio, scale_name]
+
 
 def get_scale_from_name_and_key():
     """
@@ -28,7 +37,7 @@ def get_scale_from_name_and_key():
     # generate random scale
     scale_index = int(random.random() * 7)
     scale = scales[scale_index]
-
+    print("Scale Index: " + str(scale_index))
     # randomize, if the system is flat(f, b, eb, ab, db) or sharp(g, d, a, e, h)
     if scale_index != 0:
         n_harmonic_system = random.choice([SYSTEM_SHARP, SYSTEM_FLAT])
@@ -48,7 +57,7 @@ def get_scale_from_name_and_key():
     else:     
         # for the sharp system the iteration step is 5 semitones (c->g, g->d and so on)
         harmonic_system_step = 7
-        # setting the notes to flat notes
+        # setting the notes to sharp notes
         harmonic_system_notes = notes_sharp
 
     # getting the random key index
@@ -72,6 +81,9 @@ def get_scale_from_name_and_key():
         print("\033[92mRichtig!\033[0m das ist " + harmonic_system_notes[key_index] + " " + scale)
     else:
         print("\033[91mFalsch...\033[0m das ist " + harmonic_system_notes[key_index] + " " + scale)
+   
+    print("NOTES: " + str(notes) + "   ---    Scale: " + scale)
+    print("NOTES: " + str(harmonic_system_notes))
+    print("STEPS: " + str(harmonic_system_step))
     """
-
     return [notes, scale]
