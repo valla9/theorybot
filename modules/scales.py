@@ -17,7 +17,16 @@ SYSTEM_FLAT = "\033[92mFlat"
 SYSTEM_SHARP = "\033[96mSharp"
 
 def get_scale_audio():
-    """returns a scale name and the matching audio file"""
+    """
+    returns a scale name and the matching audio file
+    HOT TO GENERATE SUCH A FILE:
+    -> Open Nexus-Synth 
+    -> Preset: Nexus Grandpiano
+    -> Disable Reverb
+    -> 140 BPM
+    -> Quarter-Notes
+    -> Play with Octave (VIII. Step)
+    """
     # generate random scale
     scale_index = int(random.random() * 7)
 
