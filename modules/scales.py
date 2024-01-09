@@ -30,7 +30,10 @@ def get_scale_from_name_and_key():
     scale = scales[scale_index]
 
     # randomize, if the system is flat(f, b, eb, ab, db) or sharp(g, d, a, e, h)
-    n_harmonic_system = random.choice([SYSTEM_SHARP, SYSTEM_FLAT])
+    if scale_index != 0:
+        n_harmonic_system = random.choice([SYSTEM_SHARP, SYSTEM_FLAT])
+    else:
+        n_harmonic_system = SYSTEM_SHARP
 
     # define harmonic system dependent variables
     harmonic_system_step = 0
@@ -64,18 +67,11 @@ def get_scale_from_name_and_key():
     for i in range(7):
         note_order_index = (note_order_index + 1 + steps[(scale_index + i) % 7]) % 12
         notes += ", " + harmonic_system_notes[note_order_index]
-    
-    os.system('cls')
-    print("Welche Tonart ist das?")
-    print(notes)
-    guess = input("")
-
+    """
     if guess == scale:
         print("\033[92mRichtig!\033[0m das ist " + harmonic_system_notes[key_index] + " " + scale)
     else:
         print("\033[91mFalsch...\033[0m das ist " + harmonic_system_notes[key_index] + " " + scale)
-    
-    input()
+    """
 
-while True:
-    get_scale_from_name_and_key()
+    return [notes, scale]
